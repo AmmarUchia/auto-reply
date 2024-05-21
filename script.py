@@ -1,11 +1,15 @@
 import os
 import requests
 from flask import Flask, request
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 
-PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
-VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
+PAGE_ACCESS_TOKEN = os.getenv('PAGE_ACCESS_TOKEN')
+VERIFY_TOKEN = os.getenv('VERIFY_TOKEN')
 
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
